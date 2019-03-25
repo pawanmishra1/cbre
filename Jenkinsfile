@@ -42,7 +42,7 @@ pipeline {
       parallel {
         stage('Install Docker') {
          steps {
-           ansiblePlaybook(inventory: '/root/IAAC/playbooks/inventory.ini', playbook: '/root/IAAC/playbooks/docker.yml')
+           ansiblePlaybook(inventory: '/home/appmod/IAAC/playbooks/inventory.ini', playbook: '/home/appmod/IAAC/playbooks/docker.yml')
            
           }
          }   
