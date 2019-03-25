@@ -14,7 +14,7 @@ pipeline {
 			stage('Create VM ') {
              steps {
 		         sh '''#!/bin/bash
-                     sleep 40
+                     sleep 60
                      echo "VM Created"  '''
              }
             }
@@ -22,7 +22,7 @@ pipeline {
            stage('User Add') {
 		    steps {
             sh '''#!/bin/bash
-                     sleep 220
+                     sleep 80
                      echo "User Added"  '''
           }      
          }
