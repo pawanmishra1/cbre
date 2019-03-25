@@ -3,25 +3,25 @@ pipeline {
   stages {
     stage('Provisioning') {
       parallel {
-              stage('Create VM') {
+#              stage('Create VM') {
                                                
                                       
-                 steps('Create VM ') {
-                   sh '''#!/bin/bash
-                      cd \'/root/infrastructure-as-code/terraform/small-size'
-                          /usr/local/bin/terraform destroy -auto-approve
-                          sleep 30 
-                          echo \'All VM deleted\' '''
+#                 steps('Create VM ') {
+#                   sh '''#!/bin/bash
+#                      cd \'/root/infrastructure-as-code/terraform/small-size'
+#                          /usr/local/bin/terraform destroy -auto-approve
+#                          sleep 30 
+#                          echo \'All VM deleted\' '''
             
 	
-                 sh '''#!/bin/bash
-                 cd \'/root/infrastructure-as-code/terraform/small-size'
-                /usr/local/bin/terraform apply -auto-approve
-                echo \'ALL VM Created\'  '''
+#                 sh '''#!/bin/bash
+#                 cd \'/root/infrastructure-as-code/terraform/small-size'
+#                /usr/local/bin/terraform apply -auto-approve
+#                echo \'ALL VM Created\'  '''
          
-                 ansiblePlaybook(inventory: '/root/IAAC/playbooks/inventory.ini', playbook: '/root/IAAC/playbooks/user_add.yml')
-                 }		  
-                }
+#                 ansiblePlaybook(inventory: '/root/IAAC/playbooks/inventory.ini', playbook: '/root/IAAC/playbooks/user_add.yml')
+#                 }		  
+#               }
 
 
            stage('Clean VM ') {
@@ -29,6 +29,14 @@ pipeline {
 		         sh '''#!/bin/bash
                      sleep 40
                      echo "VM Deleted"  '''
+             }
+            }
+			
+			stage('Create VM ') {
+             steps {
+		         sh '''#!/bin/bash
+                     sleep 40
+                     echo "VM Created"  '''
              }
             }
         
